@@ -4,9 +4,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 var pixels = require('image-pixels')
 var Promise = require('promise');
-
-const hostname = '127.0.0.1';
-const port = 3000;
+const { port } = require('./config');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -44,8 +42,8 @@ app.post("/upload", function (req, res) {
         })
 });
 
-app.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(port, () => {
+    console.log(`Server running at port:${port}`);
 });
 
 async function parseImage(image) {
